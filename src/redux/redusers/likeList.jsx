@@ -1,22 +1,16 @@
 import { SAVE_LIKE } from '../types'
 
-const initialState = {
-  saveLikeList: [],
-}
+const initialState = []
 
 export const likeList = (state = initialState, action) => {
   switch (action.type) {
     case SAVE_LIKE:
-      if (!state.saveLikeList.includes(action.payload)) {
-        return {
-          saveLikeList: [...state.saveLikeList, action.payload],
-        }
+      if (!state.includes(action.payload)) {
+        return [...state, action.payload]
       } else {
-        return state
+        return [...state]
       }
     default:
-      return {
-        saveLikeList: [...state.saveLikeList],
-      }
+      return state
   }
 }

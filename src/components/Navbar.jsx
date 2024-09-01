@@ -9,7 +9,9 @@ import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
 function Navbar() {
-    const likeCount = useSelector(state => state.likeList.saveLikeList).length
+    const likeCount = useSelector(state => state.likeList)?.length
+    const savedCount = useSelector(state => state.savedProducts)?.length
+    const orderedCount = useSelector(state => state.OrderedList)?.length
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -58,24 +60,28 @@ function Navbar() {
                 className="cursor-pointer"
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {' '}
                 Liked{' '}
               </NavLink>
             </Badge>
-            <NavLink to={"/saved"}
-              className="cursor-pointer"
-              sx={{ my: 2, color: 'white', display: 'block' }}
-            >
-              {' '}
-              Saved{' '}
-            </NavLink>
-            <NavLink to={"/ordered"}
-              className="cursor-pointer"
-              sx={{ my: 2, color: 'white', display: 'block' }}
-            >
-              {' '}
-              Ordered{' '}
-            </NavLink>
+            <Badge badgeContent={savedCount} color="success" showZero>
+              <NavLink to={"/liked"}
+                className="cursor-pointer"
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                Saved{' '}
+              </NavLink>
+            </Badge>
+
+
+            <Badge badgeContent={orderedCount} color="success" showZero>
+              <NavLink to={"/liked"}
+                className="cursor-pointer"
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                {' '}
+                Ordered{' '}
+              </NavLink>
+            </Badge>
           </div>
         </Toolbar>
       </Container>

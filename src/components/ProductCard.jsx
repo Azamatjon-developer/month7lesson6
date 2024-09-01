@@ -8,10 +8,10 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp'
 import SaveIcon from '@mui/icons-material/Save';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import { useDispatch, useSelector } from 'react-redux'
-import { SAVE_LIKE, SAVED_PRODUCTS } from '../redux/types'
+import { ORDERED_PRODUCTS, SAVE_LIKE, SAVED_PRODUCTS } from '../redux/types'
 export default function ProductCard({ item }) {
   const dispatch = useDispatch()
-  const likeCount = useSelector(state=>state.likeList.saveLikeList).length
+  const likeCount = useSelector(state=>state.likeList).length
 
   return (
     <Card className="!bg-slate-300 p-3 rounded-lg" sx={{ maxWidth: 345 }}>
@@ -33,7 +33,7 @@ export default function ProductCard({ item }) {
         <div className='flex space-x-2'>
           <Button onClick={()=> dispatch({type:SAVE_LIKE,payload:item})} color='primary' startIcon={<ThumbUpIcon/>} variant='contained' >Like</Button>
           <Button onClick={() => dispatch({type:SAVED_PRODUCTS,payload:item})} color='secondary' startIcon={<SaveIcon/>} variant='contained' >Save </Button>
-          <Button color='success' startIcon={<LocalShippingIcon/>} variant='contained' > Order </Button>
+          <Button onClick={()=> dispatch({type:ORDERED_PRODUCTS,payload:item}) } color='success' startIcon={<LocalShippingIcon/>} variant='contained' > Order </Button>
         </div>
     </Card>
   )

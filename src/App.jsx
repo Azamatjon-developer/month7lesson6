@@ -6,9 +6,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { GET_ALL_PRODUCTS } from './redux/types'
 import Navbar from './components/Navbar'
 function App() {
-  const getProducts = useSelector((state) => state.getProduct.getAllProducts)
-  const savedList = useSelector((state) => state)
-  console.log(savedList)
+  const getProducts = useSelector((state) => state.getProduct)
+  const savedList = useSelector((state) => state.savedProducts)
+    
   const dispatch = useDispatch()
   useEffect(() => {
     useAxios()
